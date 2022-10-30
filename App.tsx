@@ -68,6 +68,7 @@ function HomeScreen({ navigation }) {
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
+        testID="button"
       />
     </View>
   );

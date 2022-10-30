@@ -1,0 +1,11 @@
+{
+  "ios": {
+    "workspace": "ios/TestRNOwlProject.xcworkspace",
+    "scheme": "TestRNOwlProject",
+    "configuration": "Release",
+    "device": "iPhone 13"
+  },
+  "android": {
+    "packageName": "com.testrnowl"
+  }
+}
