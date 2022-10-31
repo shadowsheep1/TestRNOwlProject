@@ -31,6 +31,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { store } from './redux/store';
+import { decrement, increment } from './redux/actions/counterAction';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -63,27 +66,27 @@ const Section: React.FC<
 };
 
 function HomeScreen({ navigation }) {
-  const [counter, setCounter] = useState(0);
- 
+  const dispatch = useDispatch();
+  const count = useSelector((store) => store.count.count);
   const handleIncreament = () => {
-    setCounter(counter + 1);
+    dispatch(increment());
   };
- 
+
   const handleDecreament = () => {
-    setCounter(counter - 1);
-  }; 
+    dispatch(decrement());
+  };
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-        testID="button"
-      />
       <View style={styles.container}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => navigation.navigate('Details')}
+          testID="button"
+        />
         <Text style={styles.title_text}>Counter App</Text>
-        <Text style={styles.counter_text}>{counter}</Text>
+        <Text style={styles.counter_text}>{count}</Text>
         <Pressable onPress={handleIncreament} style={styles.btn}>
           <Text style={styles.btn_text}> Increment </Text>
         </Pressable>
@@ -156,12 +159,14 @@ const Stack = createStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
