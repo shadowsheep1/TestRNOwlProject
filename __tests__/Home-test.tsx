@@ -11,7 +11,7 @@ test('Home increase test: integration test', () => {
     render(<HomeScreen navigation={undefined} />);
     const counter = screen.getByTestId('counter');
     fireEvent.press(screen.getByTestId('incrementButton'));
-    console.log(counter.props);
+    //console.log(counter.props);
     expect(counter.props.children).toBe(1);
 });
 
