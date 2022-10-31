@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {type PropsWithChildren} from 'react';
+import React, { useState, type PropsWithChildren } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -21,6 +21,7 @@ import {
   Button,
   useColorScheme,
   View,
+  Pressable,
 } from 'react-native';
 
 import {
@@ -35,7 +36,7 @@ const Section: React.FC<
   PropsWithChildren<{
     title: string;
   }>
-> = ({children, title}) => {
+> = ({ children, title }) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -62,6 +63,16 @@ const Section: React.FC<
 };
 
 function HomeScreen({ navigation }) {
+  const [counter, setCounter] = useState(0);
+ 
+  const handleIncreament = () => {
+    setCounter(counter + 1);
+  };
+ 
+  const handleDecreament = () => {
+    setCounter(counter - 1);
+  }; 
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
@@ -70,9 +81,68 @@ function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate('Details')}
         testID="button"
       />
+      <View style={styles.container}>
+        <Text style={styles.title_text}>Counter App</Text>
+        <Text style={styles.counter_text}>{counter}</Text>
+        <Pressable onPress={handleIncreament} style={styles.btn}>
+          <Text style={styles.btn_text}> Increment </Text>
+        </Pressable>
+
+        <Pressable
+          onPress={handleDecreament}
+          style={{ ...styles.btn, backgroundColor: '#6e3b3b' }}>
+          <Text style={styles.btn_text}> Decrement </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: 50,
+  },
+  title_text: {
+    fontSize: 40,
+    fontWeight: '900',
+    marginBottom: 55,
+  },
+  counter_text: {
+    fontSize: 35,
+    fontWeight: '900',
+    margin: 15,
+  },
+  btn: {
+    backgroundColor: '#086972',
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+  btn_text: {
+    fontSize: 23,
+    color: '#fff',
+  },
+});
 
 function DetailsScreen() {
   return (
@@ -94,24 +164,5 @@ function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
