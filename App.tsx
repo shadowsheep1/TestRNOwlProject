@@ -65,7 +65,7 @@ const Section: React.FC<
   );
 };
 
-function HomeScreen({ navigation }) {
+export function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const count = useSelector((store) => store.count.count);
   const handleIncreament = () => {
@@ -86,12 +86,14 @@ function HomeScreen({ navigation }) {
           testID="button"
         />
         <Text style={styles.title_text}>Counter App</Text>
-        <Text style={styles.counter_text}>{count}</Text>
-        <Pressable onPress={handleIncreament} style={styles.btn}>
+        <Text style={styles.counter_text} testID="counter">{count}</Text>
+        <Pressable testID="incrementButton"
+          onPress={handleIncreament}
+          style={styles.btn}>
           <Text style={styles.btn_text}> Increment </Text>
         </Pressable>
 
-        <Pressable
+        <Pressable testID="decrementButton"
           onPress={handleDecreament}
           style={{ ...styles.btn, backgroundColor: '#6e3b3b' }}>
           <Text style={styles.btn_text}> Decrement </Text>
