@@ -60,6 +60,9 @@
     ],
     "testPathIgnorePatterns": [
       ".*(.owl.).*"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
     ]
   }
 }
