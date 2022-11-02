@@ -8,9 +8,10 @@
  * @format
  */
 
-import React, { useState, type PropsWithChildren } from 'react';
+import React, { useEffect, useState, type PropsWithChildren } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Reactotron from 'reactotron-react-native'
 
 import {
   SafeAreaView,
@@ -158,8 +159,31 @@ function DetailsScreen() {
 }
 
 const Stack = createStackNavigator();
+const reactotronLog = Reactotron.log;
+const reactotronWarn = Reactotron.warn;
+const reactotronError = Reactotron.error;
 
 function App() {
+  useEffect(() => {
+    // https://bobbyhadz.com/blog/typescript-cannot-invoke-an-object-which-is-possibly-undefined#:~:text=The%20error%20%22Cannot%20invoke%20an,(%3F.)%2C%20e.g.%20employee.
+    reactotronLog?.('Rendering App Component!');
+    reactotronLog?.({ numbers: [1, 2, 3], boolean: false, nested: { here: 'we go' } });
+    reactotronWarn?.('*glares*');
+    reactotronError?.('Now you have done it!', null);
+    Reactotron.display({
+      name: 'KNOCK KNOCK',
+      preview: 'Who\'s there?',
+      value: 'Orange.'
+    })
+    
+    Reactotron.display({
+      name: 'ORANGE',
+      preview: 'Who?',
+      value: 'Orange you glad you don\'t know me in real life?',
+      important: true
+    })
+  });
+
   return (
     <Provider store={store}>
       <NavigationContainer>
