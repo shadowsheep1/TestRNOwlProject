@@ -77,10 +77,31 @@ export function HomeScreen({ navigation }) {
     dispatch(decrement());
   };
 
+  const fetchRequest = () => {
+    fetch('https://dummyjson.com/products', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json())
+      .then((json) => {
+        reactotronLog?.(json)
+      })
+      .catch((error) => {
+        console.error(error);
+      });;
+  };
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.container}>
         <Text>Home Screen</Text>
+        <Button
+          title="Test HTTP Request"
+          onPress={fetchRequest}
+          testID="httpButton"
+        />
         <Button
           title="Go to Details"
           onPress={() => navigation.navigate('Details')}

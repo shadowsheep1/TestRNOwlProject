@@ -1,4 +1,4 @@
-import Reactotron from 'reactotron-react-native'
+import Reactotron, { networking } from 'reactotron-react-native'
 import { reactotronRedux } from 'reactotron-redux'
 
 const reactotron = Reactotron
@@ -6,6 +6,7 @@ const reactotron = Reactotron
   .configure() // controls connection & communication settings
   .useReactNative() // add all built-in react native plugins
   .use(reactotronRedux()) // add redux support
+  .use(networking())
   .connect() // let's connect!
 
 export default reactotron;
