@@ -1,13 +1,19 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import CountReducer from './reducers/countReducer';
 import Reactotron from '../ReactotronConfig';
+import createSagaMiddleware from 'redux-saga'
+import { decreaseSaga, increaseSaga, watchAll } from './saga/counterSaga';
 
 const rootReducer = combineReducers({
     count: CountReducer,
 });
 
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+
 const middlewares = [
     /* other middlewares */
+    sagaMiddleware
 ];
 
 if (__DEV__) {
@@ -32,3 +38,5 @@ export const store = createStore(
     rootReducer,
     composedEnhancers
 );
+
+sagaMiddleware.run(watchAll);
