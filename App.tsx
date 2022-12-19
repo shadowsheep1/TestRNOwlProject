@@ -35,6 +35,7 @@ import {
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from './redux/store';
 import { decrement, increment } from './redux/actions/counterAction';
+import moment from 'moment';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -184,8 +185,59 @@ const reactotronLog = Reactotron.log;
 const reactotronWarn = Reactotron.warn;
 const reactotronError = Reactotron.error;
 
+function pad(n: number): string {
+  return n.toString().padStart(2, "0");
+}
+
+function formatDateForFiscalCode(
+  d: Date
+): Date {
+  const year = d.getUTCFullYear();
+  const month = pad(d.getUTCMonth() + 1);
+  const day = pad(d.getUTCDate());
+  const now = d//new Date();
+  console.log("💥 " + now.toISOString());
+  const hours = pad(now.getUTCHours());
+  const minutes = pad(now.getUTCMinutes());
+  const seconds = pad(now.getUTCSeconds());
+  return new Date(
+    `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000`
+  );
+}
+
 function App() {
   useEffect(() => {
+    const iso8601String = '1977-05-22T00:00:00.000Z';
+    const myDate = new Date(iso8601String);
+    const utcByMoment = moment(myDate).utc().format("DD/MM/YYYY");
+    console.log("********* moment **********");
+    console.log(myDate.toISOString());
+    console.log(myDate.toString());
+    console.log("🦄 " + utcByMoment);
+    console.log("********* std **********");
+    const uDate = formatDateForFiscalCode(myDate);
+    console.log(uDate.toISOString());
+    console.log(uDate.toString());
+    console.log("🚀 " + uDate.toLocaleDateString(
+      "it-IT", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      //hour12: false,
+      //hour: "2-digit",
+      //minute: "2-digit"
+    })
+    );
+    console.log("🚀🚀 " + myDate.toLocaleDateString(
+      "it-IT", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      //hour12: false,
+      //hour: "2-digit",
+      //minute: "2-digit"
+    })
+    );
     // https://bobbyhadz.com/blog/typescript-cannot-invoke-an-object-which-is-possibly-undefined#:~:text=The%20error%20%22Cannot%20invoke%20an,(%3F.)%2C%20e.g.%20employee.
     reactotronLog?.('Rendering App Component!');
     reactotronLog?.({ numbers: [1, 2, 3], boolean: false, nested: { here: 'we go' } });
@@ -196,7 +248,7 @@ function App() {
       preview: 'Who\'s there?',
       value: 'Orange.'
     })
-    
+
     Reactotron.display({
       name: 'ORANGE',
       preview: 'Who?',
