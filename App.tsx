@@ -77,6 +77,7 @@ export function HomeScreen({navigation}) {
     dispatch(decrement());
   };
 
+  // Test comment
   async function generateKey() {
     try {
       const result = await generate('PERSONAL_KEYTAG');
