@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@pagopa/io-react-native-crypto": "https://github.com/pagopa/io-react-native-crypto#5abfa32702ee2b1f65565146db18c43a6e3ed598",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.9.8",
     "@react-navigation/stack": "^5.14.9",
