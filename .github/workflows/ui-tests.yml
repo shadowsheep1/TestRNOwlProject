@@ -48,7 +48,7 @@ jobs:
 
       - uses: futureware-tech/simulator-action@ee05c113b79f056b47f354d7b313555f5491e158 # v2
         with:
-          model: 'iPhone SE (3rd generation)'
+          model: 'iPhone SE (2nd generation)'
           os_version: '>=15.0'
 
       - name: Run Owl Build
