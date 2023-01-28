@@ -39,7 +39,7 @@ jobs:
       - name: Install CocoaPods Gem
         run: gem install cocoapods -v 1.11.0
 
-      - uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # v2
+      - uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
         with:
           path: ./example/ios/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
