@@ -7,7 +7,11 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "owl:build:ios": "yarn owl build --platform ios",
+    "owl:test:ios": " yarn owl test --platform ios   ",
+    "owl:build:android": "yarn owl build --platform android",
+    "owl:test:android": "yarn owl test --platform android"
   },
   "dependencies": {
     "@pagopa/io-react-native-crypto": "https://github.com/pagopa/io-react-native-crypto#5abfa32702ee2b1f65565146db18c43a6e3ed598",

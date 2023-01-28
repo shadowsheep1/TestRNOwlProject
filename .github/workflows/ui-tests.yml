@@ -28,27 +28,23 @@ jobs:
         with:
           node-version: 18.11.0
 
-      - name: Install Dependencies (Library)
+      - name: Install Dependencies
         run: yarn install --frozen-lockfile
         working-directory: ./
 
-      - name: Install Dependencies (Example App)
-        run: yarn install --frozen-lockfile
-        working-directory: ./example
-
       - name: Install CocoaPods Gem
-        run: gem install cocoapods -v 1.11.0
+        run: gem install cocoapods -v 1.11.3
 
       - uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
         with:
-          path: ./example/ios/Pods
+          path: ./ios/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pods-
 
       - name: Install Pods
         run: pod install
-        working-directory: ./example/ios
+        working-directory: ./ios
 
       - uses: futureware-tech/simulator-action@ee05c113b79f056b47f354d7b313555f5491e158 # v2
         with:
@@ -57,18 +53,16 @@ jobs:
 
       - name: Run Owl Build
         run: yarn owl:build:ios
-        working-directory: ./example
 
       - name: Run Owl Test
         run: yarn owl:test:ios
-        working-directory: ./example
 
       - name: Store screenshots and report as artifacts
         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
         if: failure()
         with:
           name: owl-results
-          path: example/.owl
+          path: .owl
 
   run-visual-regression-android:
     runs-on: macos-11
@@ -89,13 +83,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install Dependencies (Library)
-        run: yarn install --frozen-lockfile
-        working-directory: ./
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: 18.11.0
 
-      - name: Install Dependencies (Example App)
+      - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        working-directory: ./example
 
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
         with:
@@ -124,15 +117,13 @@ jobs:
 
       - name: Run Owl Build
         run: yarn owl:build:android
-        working-directory: ./example
 
       - name: Run Owl Test
         run: yarn owl:test:android
-        working-directory: ./example
 
       - name: Store screenshots as artifacts
         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
         if: failure()
         with:
           name: owl-screenshots
-          path: example/.owl
+          path: .owl
