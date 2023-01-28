@@ -6,6 +6,6 @@
     "device": "iPhone 13"
   },
   "android": {
-    "packageName": "com.testrnowl"
+    "packageName": "com.testrnowlproject"
   }
 }
