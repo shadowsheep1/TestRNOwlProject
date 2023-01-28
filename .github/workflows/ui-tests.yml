@@ -7,7 +7,7 @@ jobs:
     runs-on: macos-11
 
     steps:
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 // v2
+      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
 
       - name: Get Runner Information
         run: /usr/bin/xcodebuild -version
@@ -16,7 +16,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 // v3
+      - uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -39,7 +39,7 @@ jobs:
       - name: Install CocoaPods Gem
         run: gem install cocoapods -v 1.11.0
 
-      - uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed // v2
+      - uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # v2
         with:
           path: ./example/ios/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
@@ -50,7 +50,7 @@ jobs:
         run: pod install
         working-directory: ./example/ios
 
-      - uses: futureware-tech/simulator-action@ee05c113b79f056b47f354d7b313555f5491e158 // v2
+      - uses: futureware-tech/simulator-action@ee05c113b79f056b47f354d7b313555f5491e158 # v2
         with:
           model: 'iPhone SE (3rd generation)'
           os_version: '>=15.0'
@@ -64,7 +64,7 @@ jobs:
         working-directory: ./example
 
       - name: Store screenshots and report as artifacts
-        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 // v2
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
         if: failure()
         with:
           name: owl-results
@@ -75,13 +75,13 @@ jobs:
     if: ${{ false }}
 
     steps:
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 // v2
+      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 // v2
+      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -101,7 +101,7 @@ jobs:
         run: yarn install --frozen-lockfile
         working-directory: ./example
 
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 // v2
+      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
         with:
           path: |
             ~/.gradle/caches
