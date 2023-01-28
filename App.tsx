@@ -14,57 +14,17 @@ import {
   deleteKey,
   CryptoError,
 } from '@pagopa/io-react-native-crypto';
-import React, {useEffect, type PropsWithChildren} from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Reactotron from 'reactotron-react-native';
 
-import {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  StatusBar,
-  StyleSheet,
-  Text,
-  Button,
-  useColorScheme,
-  View,
-  Pressable,
-} from 'react-native';
+import {StyleSheet, Text, Button, View, Pressable} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import {store} from './redux/store';
 import {decrement, increment} from './redux/actions/counterAction';
 import moment from 'moment';
-
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
 export function HomeScreen({navigation}) {
   const dispatch = useDispatch();
