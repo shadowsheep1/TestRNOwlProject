@@ -26,9 +26,9 @@ import {store} from './redux/store';
 import {decrement, increment} from './redux/actions/counterAction';
 import moment from 'moment';
 
-export function HomeScreen({navigation}) {
+export function HomeScreen({navigation}: {navigation: any}) {
   const dispatch = useDispatch();
-  const count = useSelector(store => store.count.count);
+  const count = useSelector((a: {count: {count: number}}) => a.count.count);
   const handleIncreament = () => {
     dispatch(increment());
   };
