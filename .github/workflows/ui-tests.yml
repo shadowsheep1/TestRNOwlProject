@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   run-visual-regression-ios:
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
@@ -48,7 +48,7 @@ jobs:
 
       - uses: futureware-tech/simulator-action@ee05c113b79f056b47f354d7b313555f5491e158 # v2
         with:
-          model: 'iPhone SE (2nd generation)'
+          model: 'iPhone SE (3rd generation)'
           os_version: '>=15.0'
 
       - name: Run Owl Build
