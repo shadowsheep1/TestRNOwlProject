@@ -32,10 +32,6 @@ jobs:
         run: yarn install --frozen-lockfile
         working-directory: ./
 
-      - name: Compile the library
-        run: yarn build
-        working-directory: ./
-
       - name: Install Dependencies (Example App)
         run: yarn install --frozen-lockfile
         working-directory: ./example
