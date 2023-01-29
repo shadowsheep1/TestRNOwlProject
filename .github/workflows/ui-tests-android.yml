@@ -5,7 +5,7 @@ on: [pull_request]
 jobs:
   run-visual-regression-android:
     runs-on: macos-11
-    if: ${{ false }}
+    if: ${{ true }}
 
     steps:
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
