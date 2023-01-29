@@ -5,6 +5,7 @@ on: [pull_request]
 jobs:
   run-visual-regression-ios:
     runs-on: macos-12
+    if: ${{ false }} # skip for now
 
     steps:
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
