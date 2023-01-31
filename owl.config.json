@@ -3,9 +3,9 @@
     "workspace": "ios/TestRNOwlProject.xcworkspace",
     "scheme": "TestRNOwlProject",
     "configuration": "Release",
-    "device": "iPhone 13"
+    "device": "iPhone SE (3rd generation)"
   },
   "android": {
-    "packageName": "com.testrnowl"
+    "packageName": "com.testrnowlproject"
   }
 }
