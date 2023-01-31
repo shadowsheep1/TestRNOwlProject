@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "owl:build:ios": "yarn owl build --platform ios",
+    "owl:build:ios": "owl build --platform ios",
     "owl:test:ios": "owl test --platform ios",
     "owl:build:android": "owl build --platform android",
     "owl:test:android": "owl test --platform android"
