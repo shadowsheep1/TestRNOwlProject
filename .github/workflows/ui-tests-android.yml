@@ -65,9 +65,10 @@ jobs:
       - name: Run Owl Test
         run: yarn owl:test:android
 
-      #- name: Setup tmate session
-      #  if: ${{ failure() }}
-      #  uses: mxschmitt/action-tmate@1005f9c9db5f1b055a495e72c6e589764984baf6 # v3.14
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@1005f9c9db5f1b055a495e72c6e589764984baf6 # v3.14
+        timeout-minutes: 15
 
       - name: Store screenshots as artifacts
         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
