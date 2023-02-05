@@ -1,0 +1,1 @@
+"%ANDROID_HOME%/cmdline-tools/latest/bin/sdkmanager.bat system-images;android-30;default;x86_64"
