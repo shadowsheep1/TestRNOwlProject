@@ -63,7 +63,7 @@ jobs:
         run: $ANDROID_HOME/tools/emulator -memory 4096 -avd Pixel_API_31 -wipe-data -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
 
       - name: ADB Wait For Device
-        run: adb wait-for-any-device
+        run: $ANDROID_HOME/platform-tools/adb wait-for-any-device
         timeout-minutes: 5
 
       - name: Run Owl Build
