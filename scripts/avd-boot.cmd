@@ -1,1 +1,1 @@
-"%ANDROID_HOME%\tools\emulator" -memory 4096 -avd Pixel_API_31 -wipe-data -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
+%ANDROID_HOME%\tools\emulator -memory 4096 -avd Pixel_API_31 -wipe-data -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
