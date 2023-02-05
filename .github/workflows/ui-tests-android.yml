@@ -10,50 +10,11 @@ jobs:
     if: ${{ true }}
 
     steps:
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
-
-      - name: (Linux) Install apt dependencies
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt update
-          sudo apt install pulseaudio
-
-      - uses: actions/setup-java@1df8dbefe2a8cbc99770194893dd902763bee34b # v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-
-      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
-        with:
-          node-version: 18
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      
 
       - name: SKDs - download required images
         shell: cmd
-        run: call .\scipts\sdk-download.cmd
+        run: call .\scripts\sdk-download.cmd
 
       - name: SDKs - accept licenses
         shell: cmd
