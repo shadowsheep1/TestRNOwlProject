@@ -1,0 +1,54 @@
+name: UI Tests - Android
+
+on: [pull_request]
+
+jobs:
+  run-visual-regression-android:
+    #runs-on: macos-11
+    #runs-on: ubuntu-latest // https://github.com/actions/runner-images/issues/6253
+    runs-on: windows-latest
+    if: ${{ true }}
+
+    steps:
+      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
+
+      
+
+      - name: SKDs - download required images
+        shell: cmd
+        run: call .\scripts\sdk-download.cmd
+
+      - name: SDKs - accept licenses
+        shell: cmd
+        run: call .\scripts\sdk-accept.cmd
+
+      - name: Emulator - Create
+        shell: cmd
+        run: call .\scripts\avd-create.cmd
+
+      - name: Emulator - Boot
+        shell: cmd
+        run: call .\scripts\avd-boot.cmd
+
+      - name: ADB Wait For Device
+        run: call .\scripts\adb-wait-device.cmd
+        timeout-minutes: 5
+
+      - name: Run Owl Build
+        run: yarn owl:build:android
+
+      - name: Run Owl Test
+        run: yarn owl:test:android
+
+      - name: Store screenshots as artifacts
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
+        if: failure()
+        with:
+          name: owl-screenshots
+          path: .owl
+
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        #if: ${{ false }}
+        uses: mxschmitt/action-tmate@1005f9c9db5f1b055a495e72c6e589764984baf6 # v3.14
+        timeout-minutes: 15

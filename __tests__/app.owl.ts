@@ -1,4 +1,4 @@
-import { press, takeScreenshot } from 'react-native-owl';
+import {press, takeScreenshot} from 'react-native-owl';
 
 describe('App.tsx', () => {
   it('takes a screenshot of the first screen', async () => {
@@ -8,7 +8,7 @@ describe('App.tsx', () => {
   });
 
   it('presses a button, then takes a screenshot', async () => {
-    await press('button')
+    await press('button');
 
     const screen = await takeScreenshot('afterButtonPress');
 
