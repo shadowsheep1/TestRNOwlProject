@@ -45,8 +45,8 @@ jobs:
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
         with:
           path: |
-            ../.gradle/caches
-            ../.gradle/wrapper
+            /home/runneradmin/.gradle/caches
+            /home/runneradmin/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
