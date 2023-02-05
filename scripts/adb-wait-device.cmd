@@ -1,1 +1,1 @@
-"%ANDROID_HOME%/platform-tools/adb" wait-for-any-device
+"%ANDROID_HOME%\platform-tools\adb" wait-for-any-device

@@ -1,1 +1,1 @@
-y | "%ANDROID_HOME%/cmdline-tools/latest/bin/sdkmanager.bat" --licenses
+y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --licenses
