@@ -52,19 +52,19 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: SKDs - download required images
-        run: $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat "system-images;android-30;default;x86_64"
+        run: "%ANDROID_HOME%/cmdline-tools/latest/bin/sdkmanager.bat" "system-images;android-30;default;x86_64"
 
       - name: SDKs - accept licenses
-        run: y | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat --licenses
+        run: y | "%ANDROID_HOME%/cmdline-tools/latest/bin/sdkmanager.bat" --licenses
 
       - name: Emulator - Create
-        run: $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager.bat create avd -n Pixel_API_31 --device 'Nexus 5X' --package "system-images;android-30;default;x86_64" --sdcard 512M
+        run: "%ANDROID_HOME%/cmdline-tools/latest/bin/avdmanager.bat" create avd -n Pixel_API_31 --device 'Nexus 5X' --package "system-images;android-30;default;x86_64" --sdcard 512M
 
       - name: Emulator - Boot
-        run: $ANDROID_HOME/tools/emulator -memory 4096 -avd Pixel_API_31 -wipe-data -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
+        run: "%ANDROID_HOME%/tools/emulator" -memory 4096 -avd Pixel_API_31 -wipe-data -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
 
       - name: ADB Wait For Device
-        run: $ANDROID_HOME/platform-tools/adb wait-for-any-device
+        run: "%ANDROID_HOME%/platform-tools/adb" wait-for-any-device
         timeout-minutes: 5
 
       - name: Run Owl Build
