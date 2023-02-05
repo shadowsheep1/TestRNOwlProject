@@ -4,7 +4,8 @@ on: [pull_request]
 
 jobs:
   run-visual-regression-android:
-    runs-on: macos-11
+    #runs-on: macos-11
+    runs-on: ubuntu-latest
     if: ${{ true }}
 
     steps:
