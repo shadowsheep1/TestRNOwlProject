@@ -11,6 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # v2
 
+      - name: (Linux) Install apt dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt install pulseaudio
+
       - uses: actions/setup-java@1df8dbefe2a8cbc99770194893dd902763bee34b # v3
         with:
           distribution: 'adopt'
