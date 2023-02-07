@@ -1,7 +1,9 @@
-import {press, takeScreenshot} from 'react-native-owl';
+import {press, takeScreenshot, toExist} from 'react-native-owl';
 
 describe('App.tsx', () => {
   it('takes a screenshot of the first screen', async () => {
+    await toExist('button');
+
     const screen = await takeScreenshot('homescreen');
 
     expect(screen).toMatchBaseline();
