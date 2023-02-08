@@ -1,0 +1,1 @@
+cmd.exe /C"%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat --licenses"
