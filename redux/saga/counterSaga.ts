@@ -1,23 +1,20 @@
-import { all, call, put, fork, takeEvery, takeLatest } from 'redux-saga/effects'
-import { CounterAction } from '../actions/counterAction';
+import {all, takeEvery, takeLatest} from 'redux-saga/effects';
+import {CounterAction} from '../actions/counterAction';
 
 export function* logCount(action: CounterAction) {
-    console.log(`🦄 -> ${action.type}`)
+  console.log(`🦄 -> ${action.type}`);
 }
 
 export function* watchAll() {
-    yield all([
-        increaseSaga(),
-        decreaseSaga()
-      ]);
+  yield all([increaseSaga(), decreaseSaga()]);
 }
 
 export function* increaseSaga() {
-    yield takeEvery('COUNT_INCREASE' , logCount);
+  yield takeEvery('COUNT_INCREASE', logCount);
 }
 
 export function* decreaseSaga() {
-    yield takeEvery('COUNT_DECREASE' , logCount);
+  yield takeEvery('COUNT_DECREASE', logCount);
 }
 /*
   Alternatively you may use takeLatest.
@@ -27,9 +24,9 @@ export function* decreaseSaga() {
   and only the latest one will be run.
 */
 export function* increaseLatestSaga() {
-    yield takeLatest('COUNT_INCREASE' , logCount);
+  yield takeLatest('COUNT_INCREASE', logCount);
 }
 
 export function* decreaseLatestSaga() {
-    yield takeLatest('DECREASE_INCREASE' , logCount);
+  yield takeLatest('DECREASE_INCREASE', logCount);
 }

@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "prettify": "prettier --write \"ts/**/*.(ts|tsx)\"",
+    "prettify": "prettier --write \"./**/*.(ts|tsx)\"",
     "lint-autofix": "eslint . -c .eslintrc.js --ext .ts,.tsx --fix",    
     "husky:prettify": "prettier --write",
     "husky:lint-autofix": "eslint -c .eslintrc.js --fix",
