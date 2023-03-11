@@ -5,6 +5,7 @@ export function* logCount(action: CounterAction) {
   console.log(`🦄 -> ${action.type}`);
 }
 
+//
 export function* watchAll() {
   yield all([increaseSaga(), decreaseSaga()]);
 }

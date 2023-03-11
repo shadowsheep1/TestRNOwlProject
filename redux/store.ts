@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
+//
 const middlewares = [
   /* other middlewares */
   sagaMiddleware,
