@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Check if any files have been modified
+if [ -n "$(git status --porcelain)" ]; then
+  # Collect all modified files
+  modifiedFiles=`git diff --name-only --cached --diff-filter=ACM | grep -E '\.(ts|tsx)$' | sed 's| |\\ |g'`
+  [ -z "$modifiedFiles" ] && exit 0
+
+  echo $modifiedFiles
+  # Run lintier
+  echo "runnning lint..."  
+  yarn husky:lint-autofix `echo "$modifiedFiles"` 
+  # Run prettifier
+  echo "runnning prettier..."
+  yarn husky:prettify `echo "$modifiedFiles"`
+  # Put back any file eventually modified
+  echo "$modifiedFiles" | xargs git add
+fi
+
+# Compile the project
+echo "compiling..."
+yarn tsc:noemit
+echo "Done."

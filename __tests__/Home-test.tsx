@@ -12,6 +12,7 @@ test('Home increase test: integration test', () => {
   expect(counter.props.children).toBe(1);
 });
 
+// Test Husky
 // https://callstack.github.io/react-native-testing-library/docs/react-navigation/#example-tests
 
 test('Home increase from redux store', () => {

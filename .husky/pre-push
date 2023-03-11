@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lintier
+echo "runnning lint..."  
+yarn lint-autofix
+# Run prettifier
+echo "runnning prettier..."
+yarn prettify
+
+# If we have any modified files don't push
+if [ -n "$(git status --porcelain)" ]; then
+  # Collect all modified files
+  modifiedFiles=`git diff --name-only --diff-filter=ACM | grep -E '\.(ts|tsx)$' | sed 's| |\\ |g'`
+  echo $modifiedFiles
+  [ -z "$modifiedFiles" ] && exit 1
+fi
+
+# Compile the project
+echo "compiling..."
+yarn tsc:noemit
+echo "Done."
+
+# For testing this hook
+# TODO: remove when tested
+exit 1
