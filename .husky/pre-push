@@ -20,7 +20,3 @@ fi
 echo "compiling..."
 yarn tsc:noemit
 echo "Done."
-
-# For testing this hook
-# TODO: remove when tested
-#exit 1
