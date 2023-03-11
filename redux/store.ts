@@ -26,7 +26,7 @@ if (__DEV__) {
 const middlewareEnhancer = applyMiddleware(...middlewares);
 const reactotronEnhancers = Reactotron.createEnhancer?.();
 var composedEnhancers = middlewareEnhancer;
-if (reactotronEnhancers != undefined) {
+if (reactotronEnhancers !== undefined) {
   composedEnhancers = compose(composedEnhancers, reactotronEnhancers);
   Reactotron.log?.(composedEnhancers);
 }
