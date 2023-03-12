@@ -21,4 +21,6 @@ fi
 # Compile the project
 echo "compiling..."
 yarn tsc:noemit
+
+echo "💾 committing..."
 echo "Done."
