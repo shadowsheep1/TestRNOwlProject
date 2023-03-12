@@ -1,4 +1,4 @@
-import {all, takeEvery, takeLatest} from 'redux-saga/effects';
+   import {all, takeEvery, takeLatest} from 'redux-saga/effects';
 import {CounterAction} from '../actions/counterAction';
 
 export function* logCount(action: CounterAction) {
