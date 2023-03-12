@@ -5,9 +5,14 @@
 if [ -n "$(git status --porcelain)" ]; then
   # Collect all modified files
   modifiedFiles=`git diff --name-only --cached --diff-filter=ACM | grep -E '\.(ts|tsx)$' | sed 's| |\\ |g'`
-  [ -z "$modifiedFiles" ] && exit 0
+  if [ -z "$modifiedFiles" ]; then
+    echo "✅ All clean!"    
+    exit 0
+  else 
+    echo "🚧 Some files have been modified:"
+    echo "$modifiedFiles"
+  fi
 
-  echo $modifiedFiles
   # Run lintier
   echo "runnning lint..."  
   yarn husky:lint-autofix `echo "$modifiedFiles"` 
